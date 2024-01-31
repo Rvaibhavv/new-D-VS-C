@@ -1,0 +1,4 @@
+artifacts/*
+data.zip
+
+*.pyc
