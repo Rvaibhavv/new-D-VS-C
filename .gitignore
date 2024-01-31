@@ -2,3 +2,4 @@ artifacts/*
 data.zip
 
 *.pyc
+mlflowconfig/*
