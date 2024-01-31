@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 __version__ = "0.0.0"
 
-REPO_NAME = "DogVsCat-Identidier-full-implementation"
+REPO_NAME = "NEW-D-VS-C"
 AUTHOR_USER_NAME = "Rvaibhavv"
 SRC_REPO = "DogvsCatClassifier"
 AUTHOR_EMAIL = "rvaibhav615@gmail.com"
