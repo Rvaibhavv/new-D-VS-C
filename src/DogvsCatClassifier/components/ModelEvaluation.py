@@ -1,4 +1,4 @@
-from tensorflow import keras,mode
+from tensorflow import keras
 import tensorflow as tf
 import mlflow
 import mlflow.keras
@@ -12,8 +12,14 @@ from DogvsCatClassifier.entity.config_entity import ModelEvaluationConfig
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
+    def load_pred(self):
+        model =self.config.model_path
+        model =tf.keras.models.load_model(model)
+        return model
+
     
     def set_and_test(self):
+        
         validation_ds =keras.utils.image_dataset_from_directory(
             directory = self.config.test_data_path,
             labels='inferred',
@@ -32,7 +38,8 @@ class ModelEvaluation:
         return  validation_ds
     
     def evaluate(self,validation_ds):
-        model =self.config.model_path
+        
+        model =self.load_pred()
         test_loss, test_accuracy = model.evaluate(validation_ds)
         print('Test accuracy:', test_accuracy)
         print('Test Loss',test_loss)
@@ -44,8 +51,8 @@ class ModelEvaluation:
 
     def mlflowlogin(self,loss,accuracy):
         
-        model =self.config.model_path
-        model =tf.keras.models.load_model(model)
+        model =self.load_pred()
+        
         
 
         mlflow.set_registry_uri(self.config.mlflow_uri)

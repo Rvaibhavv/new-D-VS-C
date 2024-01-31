@@ -3,7 +3,7 @@ batch_size: 32
 image_width: 256
 image_height: 256
 inner_activation: relu
-epoch_val: 2
+epoch_val: 1
 loss_func: binary_crossentropy
 optimizer: adam
 neurons_no: [128,64,32,16,8,4,2,1]

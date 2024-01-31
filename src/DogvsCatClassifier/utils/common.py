@@ -1,4 +1,4 @@
-from cnnClassifier import logger
+from DogvsCatClassifier import logger
 from box.exceptions import BoxValueError
 import yaml
 import os
