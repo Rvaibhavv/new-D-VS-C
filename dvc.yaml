@@ -24,19 +24,18 @@ stages:
       - optimizer
       - neurons_no
     outs:
-      - artifacts/model_trainer
+      - artifacts/model_trainer/model.h5
     
   model_evaluation:
     cmd: python src/DogvsCatClassifier/pipeline/C_ME_PIPELINE.py
     deps:
       - src/DogvsCatClassifier/pipeline/C_ME_PIPELINE.py
       - config/config.yaml
-      - artifacts/model_evaluation/metrics.json
+      
 
     params: 
       - batch_size
       - image_width
       - image_height
-    metrics:
-      - metrics.json:
-          cache: false
+    outs:
+      - artifacts/model_evaluation/metrics.json
