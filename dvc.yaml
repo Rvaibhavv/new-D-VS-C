@@ -1,0 +1,40 @@
+stages:
+  data_ingestion:
+    cmd: python src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
+    deps: 
+      - python src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
+      - config/config.yaml
+
+    outs:
+      - artifacts/data_ingestion/test
+      - artifacts/data_ingestion/train
+
+  model_training:
+    cmd: python src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
+    deps:
+      - src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
+      - config/config.yaml
+    params: 
+      - batch_size
+      - image_width
+      - image_height
+      - inner_activation
+      - epoch_val
+      - loss_func
+      - optimizer
+      - neurons_no
+    outs:
+      - artifacts/model_trainer
+    
+  model_evaluation:
+    cmd: python src/DogvsCatClassifier/pipeline/C_ME_PIPELINE.py
+    deps:
+      - src/DogvsCatClassifier/pipeline/C_ME_PIPELINE.py
+      - config/config.yaml
+    params: 
+      - batch_size
+      - image_width
+      - image_height
+    metrics:
+      - scores.json:
+          cache: false
