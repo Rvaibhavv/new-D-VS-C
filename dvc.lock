@@ -1,0 +1,59 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: a028e31f30640eee2bba3a71a7f5602a
+      size: 781
+    - path: src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
+      hash: md5
+      md5: 2267803a1410721b747019bbe7cc927e
+      size: 894
+    outs:
+    - path: artifacts/data_ingestion/test
+      hash: md5
+      md5: e34ce247a4ba4ed441abd36d6f54a4d5.dir
+      size: 113168459
+      nfiles: 5000
+    - path: artifacts/data_ingestion/train
+      hash: md5
+      md5: 34558834f7b1fa308b2497245497180c.dir
+      size: 458746917
+      nfiles: 20000
+  model_training:
+    cmd: python src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: a028e31f30640eee2bba3a71a7f5602a
+      size: 781
+    - path: src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
+      hash: md5
+      md5: 46c87a4159ea968559018e91866be6a1
+      size: 929
+    params:
+      params.yaml:
+        batch_size: 32
+        epoch_val: 1
+        image_height: 256
+        image_width: 256
+        inner_activation: relu
+        loss_func: binary_crossentropy
+        neurons_no:
+        - 128
+        - 64
+        - 32
+        - 16
+        - 8
+        - 4
+        - 2
+        - 1
+        optimizer: adam
+    outs:
+    - path: artifacts/model_trainer
+      hash: md5
+      md5: 9b55645aa8a83f254821a14ecdcc2c17.dir
+      size: 178265856
+      nfiles: 1
