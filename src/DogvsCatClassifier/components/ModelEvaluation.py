@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 from pathlib import Path
 from DogvsCatClassifier.utils.common import save_json
 from DogvsCatClassifier.mlfowconfig.mlflowsetup import mlflowset
+import shutil
 
 from DogvsCatClassifier.entity.config_entity import ModelEvaluationConfig
 
@@ -39,7 +40,7 @@ class ModelEvaluation:
         return  validation_ds
     
     def evaluate(self,validation_ds):
-        
+
         model =self.load_pred()
         test_loss, test_accuracy = model.evaluate(validation_ds)
         print('Test accuracy:', test_accuracy)
