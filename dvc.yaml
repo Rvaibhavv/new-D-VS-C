@@ -1,6 +1,6 @@
 stages:
   data_ingestion:
-    cmd: python src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
+    cmd: src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
     deps: 
       - python src/DogvsCatClassifier/pipeline/A_DE_PIPELINE.py
       - config/config.yaml
@@ -10,7 +10,7 @@ stages:
       - artifacts/data_ingestion/train
 
   model_training:
-    cmd: python src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
+    cmd:  src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
     deps:
       - src/DogvsCatClassifier/pipeline/B_MT_PIPELINE.py
       - config/config.yaml
