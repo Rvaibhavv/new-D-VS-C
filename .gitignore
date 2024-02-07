@@ -1,5 +1,7 @@
 artifacts/*
 data.zip
+mlflowsetup.py
 
 *.pyc
 mlflowconfig/*
+mlruns/*

@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 from pathlib import Path
 from DogvsCatClassifier.utils.common import save_json
 from DogvsCatClassifier.mlfowconfig.mlflowsetup import mlflowset
-import shutil
+
 
 from DogvsCatClassifier.entity.config_entity import ModelEvaluationConfig
 
@@ -52,7 +52,7 @@ class ModelEvaluation:
     
 
     def mlflowlogin(self,loss,accuracy):
-        # mlflowset()
+        mlflowset()
         model =self.load_pred()
         
         
